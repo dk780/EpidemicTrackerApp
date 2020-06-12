@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="padding-top:20px">
+    <script src="lib/jquery-3.5.0.min.js"></script>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well">
+            <input id="btnLoadTreatmentRecord" class="btn btn-success"
+                   type="button" value="Load Treatment Records" />
+        </div>
+        <div id="divData" class="well hidden">
+            <table class="table table-bordered" id="tblData">
+                <thead>
+                    <tr class="success">
+                        <td>TreatmentRecordsId</td>
+                        <td>PatientID</td>
+                        <td>PatientName</td>
+                        <td>PAge</td>
+                        <td>PGender</td>
+                        <td>PEmail</td>
+                        <td>AadharID</td>
+                        <td>PContact</td>
+                        <td>AddressId</td>
+                        <td>AddressType</td>
+                        <td>StreetNo</td>
+                        <td>Area</td>
+                        <td>City</td>
+                        <td>State</td>
+                        <td>Country</td>
+                        <td>ZipCode</td>
+                        <td>OccupationId</td>
+                        <td>OccupationName</td>
+                        <td>OccupationType</td>
+                        <td>OrganisationId</td>
+                        <td>OrganisationName</td>
+                        <td>OrganisationContact</td>
+                        <td>AddressId</td>
+                        <td>AddressType</td>
+                        <td>StreetNo</td>
+                        <td>Area</td>
+                        <td>City</td>
+                        <td>State</td>
+                        <td>Country</td>
+                        <td>ZipCode</td>
+                        <td>HospitalId</td>
+                        <td>HospitalName</td>
+                        <td>Contact</td>
+                        <td>AddressId</td>
+                        <td>AddressType</td>
+                        <td>StreetNo</td>
+                        <td>Area</td>
+                        <td>City</td>
+                        <td>State</td>
+                        <td>Country</td>
+                        <td>ZipCode</td>
+                        <td>DiseaseId</td>
+                        <td>DiseaseName</td>
+                        <td>DiseaseType</td>
+                        <td>AdmittedDate</td>
+                        <td>Prescription</td>
+                        <td>RelievingDate</td>
+                        <td>IsFatal</td>
+                        <td>Currentstage</td>
+                    </tr>
+                </thead>
+                <tbody id="tblBody"></tbody>
+            </table>
+        </div>
+        <div class="modal fade" tabindex="-1" id="errorModal"
+             data-keyboard="false" data-backdrop="static">
+
+        </div>
+        <div id="divError" class="alert alert-danger collapse">
+            <a id="linkClose" href="#" class="close">&times;</a>
+            <div id="divErrorText"></div>
+        </div>
+    </div>
+
+    <br />
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well table-bordered">
+            <form action="javascript:void(0);" method="POST" onsubmit="addTreatmentRecords()">
+                <center>
+                    <h3>Add TreatmentRecords.</h3>
+                    <div class="container table-bordered" align="center">
+
+
+                        <!-- <p>Please enter the treatment records detail.</p>-->
+                        <br />
+                        <label for="patient"><b>PatientName:</b></label>
+                        <input type="text" placeholder="Enter PatientName" id="patient" required>
+                        <br /><br />
+
+                        <label for="age"><b>PAge:</b></label>
+                        <input type="text" placeholder="Patient Age" id="age" required>
+                        <br /><br />
+
+                        <label for="gender"><b>Gender:</b></label>
+                        <select id="gender">
+                            <option value="select">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <br /><br />
+
+                        <label for="email"><b>Email I'd:</b></label>
+                        <input type="text" placeholder="email" id="email" required>
+                        <br /><br />
+
+
+
+                        <label for="uniqueid"><b>UniqueID:</b></label>
+                        <input type="text" placeholder="Enter Aadhar No" id="uniqueid" required>
+                        <br /><br />
+
+                        <label for="contact"><b>Contact No</b></label>
+                        <input type="text" placeholder="Phone No" id="contact" required>
+                        <br /><br />
+
+                        <label for="Hname"><b>HospitalName:</b></label>
+                        <input type="text" placeholder="Enter Hospital Name" id="Hname" required>
+                        <br /><br />
+
+                        <label for="Hnumber"><b>Contact:</b></label>
+                        <input type="text" placeholder="Hospital Number" id="Hnumber" required>
+                        <br /><br />
+
+                        <label for="Dname"><b>DiseaseName:</b></label>
+                        <input type="text" placeholder="Enter Disease Name" id="Dname" required>
+                        <br /><br />
+
+                        <label for="Dtype"><b>Disease Type:</b></label>
+                        <input type="text" placeholder="Disease Type" id="Dtype" required>
+                        <br /><br />
+                        <label for="admit"><b>AdmittedDate:</b></label>
+                        <input type="datetime" placeholder="Enter Date" id="admit" required>
+                        <br /><br />
+
+                        <label for="prescription"><b>Prescription:</b></label>
+                        <input type="text" placeholder="Prescription" id="prescription" required>
+                        <br /><br />
+                        <label for="relieving"><b>RelievingDate:</b></label>
+                        <input type="datetime" placeholder="Enter Date" id="relieving" required>
+                        <br /><br />
+
+                        <label for="isfatal"><b>IsFatal:</b></label>
+                        <select id="isfatal">
+                            <option value="select">Select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                        <br /><br />
+                    </div>
+                    <input type="submit" name="submit" value="Submit" />
+                </center>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="lib/jquery-3.5.0.min.js"></script>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#btnLoadTreatmentRecord').click(function () {
+                $.ajax({
+                    url: 'http://localhost:59408/api/TreatmentRecords',
+                    method: 'GET',
+                    headers: {
+
+                    },
+                    success: function (data) {
+                        $('#divData').removeClass('hidden');
+                        $('#tblBody').empty();
+                        $.each(data, function (index, value) {
+                            var row = $('<tr><td>' + value.treatmentRecordsId + '</td><td>'
+                                + value.patientID + '</td><td>'
+                                + value.patientName + '</td><td>'
+                                + value.pAge + '</td><td>'
+                                + value.pGender + '</td><td>'
+                                + value.pEmail + '</td><td>'
+                                + value.aadharID + '</td><td>'
+                                + value.pContact + '</td><td>'
+                                + value.addressId + '</td><td>'
+                                + value.addressType + '</td><td>'
+                                + value.streetNo + '</td><td>'
+                                + value.area + '</td><td>'
+                                + value.city + '</td><td>'
+                                + value.state + '</td><td>'
+                                + value.country + '</td><td>'
+                                + value.zipCode + '</td><td>'
+                                + value.occupationId + '</td><td>'
+                                + value.occupationName + '</td><td>'
+                                + value.occupationType + '</td><td>'
+                                + value.organisationId + '</td><td>'
+                                + value.organisationName + '</td><td>'
+                                + value.organisationContact + '</td><td>'
+                                + value.org_AddressId + '</td><td>'
+                                + value.org_AddressType + '</td><td>'
+                                + value.org_StreetNo + '</td><td>'
+                                + value.org_Area + '</td><td>'
+                                + value.org_City + '</td><td>'
+                                + value.org_State + '</td><td>'
+                                + value.org_Country + '</td><td>'
+                                + value.org_ZipCode + '</td><td>'
+                                + value.hospitalId + '</td><td>'
+                                + value.hospitalName + '</td><td>'
+                                + value.contact + '</td><td>'
+                                + value.hos_AddressId + '</td><td>'
+                                + value.hos_AddressType + '</td><td>'
+                                + value.hos_StreetNo + '</td><td>'
+                                + value.hos_Area + '</td><td>'
+                                + value.hos_City + '</td><td>'
+                                + value.hos_State + '</td><td>'
+                                + value.hos_Country + '</td><td>'
+                                + value.hos_ZipCode + '</td><td>'
+                                + value.diseaseId + '</td><td>'
+                                + value.diseaseName + '</td><td>'
+                                + value.diseaseType + '</td><td>'
+                                + value.admittedDate + '</td><td>'
+                                + value.prescription + '</td><td>'
+                                + value.relievingDate + '</td><td>'
+                                + value.isFatal + '</td><td>'
+                                + value.currentstage + '</td><td>'
+
+
+                            );
+                            $('#tblData').append(row);
+                        });
+                    },
+                    error: function (jQXHR) {
+                        if (jQXHR.status == "401") {
+                            $('#errorModal').modal('show');
+                        }
+                        else {
+                            $('#divErrorText').text(jQXHR.responseText);
+                            $('#divError').show('fade');
+                        }
+                    }
+                });
+            });
+        });
+
+
+        const uri = 'http://localhost:59408/api/TreatmentRecords';
+function addTreatmentRecords() {
+    const addNameTextbox = document.getElementById('patient');
+    const addAgeTextbox = document.getElementById('age');
+    const addGenderSelectbox = document.getElementById('gender');
+    const addEmailTextbox = document.getElementById('email');
+    const addUniqueIDTextbox = document.getElementById('uniqueid');
+    const addContactTextbox = document.getElementById('contact');
+    const addHNameTextbox = document.getElementById('Hname');
+    const addPhoneTextbox = document.getElementById('Hnumber');
+    const addDiseaseNameTextbox = document.getElementById('Dname');
+    const addDiseaseTypeTextbox = document.getElementById('Dtype');
+    const addAdmittedDateTextbox = document.getElementById('admit');
+    const addPrescriptionTextbox = document.getElementById('prescription');
+    const addRelievingDateTextbox = document.getElementById('relieving');
+    const addIsFatalSelectbox = document.getElementById('isfatal');
+
+    const data =
+    {
+        patientName: addNameTextbox.value.trim(),
+        pAge: parseInt(addAgeTextbox.value),
+        pGender: addGenderSelectbox.value.trim(),
+        pEmail: addEmailTextbox.value.trim(),
+        uniqueID: addUniqueIDTextbox.value.trim(),
+        pContact: parseFloat(addContactTextbox.value),
+        hospitalName: addHNameTextbox.value.trim(),
+        contact: addPhoneTextbox.value.trim(),
+        diseaseName: addDiseaseNameTextbox.value.trim(),
+        diseaseType: addDiseaseTypeTextbox.value.trim(),
+        admittedDate: addAdmittedDateTextbox.value.trim(),
+        prescription: addPrescriptionTextbox.value.trim(),
+        relievingDate: addRelievingDateTextbox.value.trim(),
+        isFatal: addIsFatalSelectbox.value.trim(),
+    };
+    fetch(uri,
+        {
+            method: 'POST',
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        //.then(response => response.json())
+        .then((data) => {
+            console.log(data);
+
+        })
+
+        .catch(error => console.error('Unable to add data.', error));
+
+}
+    </script>
+</body>
+</html>

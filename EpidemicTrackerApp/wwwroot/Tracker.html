@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid brown;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #DDDDDD;
+        }
+    </style>
+    <title>index</title>
+    <link rel="stylesheet" href="Tracker.css">
+</head>
+<body>
+    <h1 style="text-align:center">EPIDEMIC TRACKER LIST </h1>
+    <table class="table table-bordered"></table>
+    <button onclick="cured()">Cured</button>
+    <button onclick="noncured()">NonCured</button>
+    <button onclick="deceased()">Deceased</button>
+    <p id="demo"></p>
+    <div>
+        <table id="patients"></table>
+    </div>
+    <script src="Tracker.js"></script>
+</body>
+</html>

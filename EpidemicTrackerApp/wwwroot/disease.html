@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="padding-top:20px">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well">
+            <input id="btnLoadDiseases" class="btn btn-success"
+                   type="button" value="Load Diseases" />
+        </div>
+        <div id="divData" class="well hidden">
+            <table class="table table-bordered" id="tblData">
+                <thead>
+                    <tr class="success">
+                        <td>DiseaseId</td>
+                        <td>DiseaseName</td>
+                        <td>DiseaseType</td>
+
+                    </tr>
+                </thead>
+                <tbody id="tblBody"></tbody>
+            </table>
+        </div>
+        <div class="modal fade" tabindex="-1" id="errorModal"
+             data-keyboard="false" data-backdrop="static">
+
+        </div>
+        <div id="divError" class="alert alert-danger collapse">
+            <a id="linkClose" href="#" class="close">&times;</a>
+            <div id="divErrorText"></div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well table-bordered">
+            <form action="javascript:void(0);" method="POST" onsubmit="addDiseaseDetail()">
+                <center>
+                    <h3>Add Disease</h3>
+                    <div class="container table-bordered" align="center">
+
+
+                        <!-- <p>Please enter the hospital detail.</p>-->
+                        <br />
+                        <label for="Dname"><b>DiseaseName:</b></label>
+                        <input type="text" placeholder="Enter Disease Name" id="Dname" required>
+                        <br /><br />
+
+                        <label for="Dtype"><b>Disease Type:</b></label>
+                        <input type="text" placeholder="Disease Type" id="Dtype" required>
+                        <br /><br />
+
+                    </div>
+                    <input type="submit" name="submit" value="Submit" />
+                </center>
+            </form>
+        </div>
+    </div>
+
+    <script src="lib/jquery-3.5.0.min.js"></script>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#btnLoadDiseases').click(function () {
+                $.ajax({
+                    url: 'http://localhost:59408/api/Diseases',
+                    method: 'GET',
+                    headers: {
+
+                    },
+                    success: function (data) {
+                        $('#divData').removeClass('hidden');
+                        $('#tblBody').empty();
+                        $.each(data, function (index, value) {
+                            var row = $('<tr><td>' + value.diseaseId + '</td><td>'
+                                + value.diseaseName + '</td><td>'
+                                + value.diseaseType + '</td>'
+                            );
+                            $('#tblData').append(row);
+                        });
+                    },
+                    error: function (jQXHR) {
+                        if (jQXHR.status == "401") {
+                            $('#errorModal').modal('show');
+                        }
+                        else {
+                            $('#divErrorText').text(jQXHR.responseText);
+                            $('#divError').show('fade');
+                        }
+                    }
+                });
+            });
+        });
+
+
+
+        const uri = 'http://localhost:59408/api/Diseases';
+function addDiseaseDetail() {
+    const addDiseaseNameTextbox = document.getElementById('Dname');
+    const addDiseaseTypeTextbox = document.getElementById('Dtype');
+    
+
+    const data =
+    {
+        diseaseName: addDiseaseNameTextbox.value.trim(),
+        diseaseType: addDiseaseTypeTextbox.value.trim(),
+        
+    };
+    fetch(uri,
+        {
+            method: 'POST',
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        //.then(response => response.json())
+        .then((data) => {
+            console.log(data);
+
+        })
+
+        .catch(error => console.error('Unable to add data.', error));
+
+}
+
+    </script>
+</body>
+</html>

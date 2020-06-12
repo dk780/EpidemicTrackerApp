@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #gf12f8;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type=number], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #gf12f8;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+
+
+        input[type=submit], select {
+            width: 100%;
+            background-color: azure;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: aquamarine;
+            }
+
+
+
+        h1 {
+            color: #0094ff;
+            margin-left: 20px;
+        }
+
+        .collapsible {
+            background-color: #808080;
+            color: azure;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .content {
+            padding: 0 10px;
+            display: none;
+            transition: max-height 0.2s ease-out;
+            max-height: 0;
+            overflow: hidden;
+            background-color: bisque;
+        }
+
+        well {
+            background-color: gray;
+            width: 100%;
+            border:double;
+        }
+
+
+
+        title {
+            color: #gf12f8;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body style="padding-top:20px">
+    <script src="lib/jquery-3.5.0.min.js"></script>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well">
+            <input id="btnLoadPatients" class="btn btn-success"
+                   type="button" value="Load Patients" />
+        </div>
+        <div id="divData" class="well hidden">
+            <table class="table table-bordered" id="tblData">
+                <thead>
+                    <tr class="success">
+                        <td>PatientID</td>
+                        <td>PatientName</td>
+                        <td>PAge</td>
+                        <td>PGender</td>
+                        <td>PEmail</td>
+                        <td>UniqueID</td>
+                        <td>PContact</td>
+                        <td>AddressId</td>
+                        <td>StreetNo</td>
+                        <td>Area</td>
+                        <td>City</td>
+                        <td>State</td>
+                        <td>Country</td>
+                        <td>ZipCode</td>
+                        <td>OccupationId</td>
+                        <td>OccupationName</td>
+                        <td>OccupationType</td>
+                        <td>OrganisationId</td>
+                        <td>OrganisationName</td>
+                        <td>OrganisationType</td>
+
+
+
+
+                    </tr>
+                </thead>
+                <tbody id="tblBody"></tbody>
+            </table>
+        </div>
+        <div class="modal fade" tabindex="-1" id="errorModal"
+             data-keyboard="false" data-backdrop="static">
+
+        </div>
+        <div id="divError" class="alert alert-danger collapse">
+            <a id="linkClose" href="#" class="close">&times;</a>
+            <div id="divErrorText"></div>
+        </div>
+    </div>
+
+
+    <br />
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well">
+            <form action="javascript:void(0);" method="POST" onsubmit="addPatients()">
+                <center>
+                    <h3>Add Patient Details.</h3>
+                    <div class="container" align="left">
+
+
+                        <!-- <p>Please enter the Patient details.</p>-->
+                        <label>
+                            PatientName:
+                            <input type="text" id="patientname" placeholder="Patient Name" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            PAge:
+                            <input type="number" id="page" placeholder="Patient Age" />
+                        </label>
+                        <br />
+                        <br />
+                        <label for="gender">Gender:</label>
+                        <select id="gender">
+                            <option value="select">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <br />
+                        <br />
+                        <label>
+                            Email:
+                            <input type="text" id="pemail" placeholder="Patient Email" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            AadharID:
+                            <input type="text" id="aadharid" placeholder="AadharId" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            PatientContact:
+                            <input type="text" id="patientcontact" placeholder="Phone No" />
+                        </label>
+                        <br />
+                        <br />
+                    </div>
+
+                    <button type="button" class="collapsible"> Patient Address </button>
+                    <div class="content">
+                        <label for="addresstype">AddressType</label>
+                        <select id="addresstype">
+                            <option value="patientaddr">Patient Address</option>
+                            <option value="orgaddr">Organisation Address</option>
+                            <option value="hospitaladdr">Hospital Address</option>
+                        </select>
+                        <br />
+                        <br />
+                        <label>
+                            Street No
+                            <input type="text" id="street" placeholder="Street No" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            Area
+                            <input type="text" id="area" placeholder="Area" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            City
+                            <input type="text" id="city" placeholder="City" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            State
+                            <input type="text" id="state" placeholder="State" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            Country
+                            <input type="text" id="country" placeholder="Country" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            ZipCode
+                            <input type="text" id="zipcode" placeholder="ZipCode" />
+                        </label>
+                        <br />
+                        <br />
+                    </div>
+
+                    <button type="button" class="collapsible"> Occupation Details </button>
+                    <div class="content">
+                        <label>
+                            Occupation Name
+                            <input type="text" id="occupationname" placeholder="Occupation" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            Occupation Type
+                            <input type="text" id="occupationtype" placeholder="Occupation Type" />
+                        </label>
+                        <br />
+                        <br />
+                    </div>
+
+                    <button type="button" class="collapsible"> Organisation Details </button>
+                    <div class="content">
+                        <label>
+                            Organisation Name
+                            <input type="text" id="organisationname" placeholder="Organisation Name" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            Organisation Type
+                            <input type="text" id="organisationtype" placeholder="Organisation Type" />
+                        </label>
+                        <br />
+                        <br />
+                        <label for="addresstype">AddressType</label>
+                        <select id="addresstype">
+                            <option value="patientaddr">Patient Address</option>
+                            <option value="orgaddr">Organisation Address</option>
+                            <option value="hospitaladdr">Hospital Address</option>
+
+                        </select>
+                        <br />
+                        <br />
+                        <label>
+                            Street No
+                            <input type="text" id="street" placeholder="Street No" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            Area
+                            <input type="text" id="area" placeholder="Area" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            City
+                            <input type="text" id="city" placeholder="City" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            State
+                            <input type="text" id="state" placeholder="State" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            Country
+                            <input type="text" id="country" placeholder="Country" />
+                        </label>
+                        <br />
+                        <br />
+                        <label>
+                            ZipCode
+                            <input type="text" id="zipcode" placeholder="ZipCode" />
+                        </label>
+                        <br />
+                        <br />
+                    </div>
+
+                    <input type="submit" name="submit" value="Submit" />
+                </center>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="lib/jquery-3.5.0.min.js"></script>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#btnLoadPatients').click(function () {
+                $.ajax({
+                    url: 'http://localhost:59408/api/Patients',
+                    method: 'GET',
+                    headers: {
+
+                    },
+                    success: function (data) {
+                        $('#divData').removeClass('hidden');
+                        $('#tblBody').empty();
+                        $.each(data, function (index, value) {
+                            var row = $('<tr><td>' + value.patientID + '</td><td>'
+                                + value.patientName + '</td><td>'
+                                + value.pAge + '</td><td>'
+                                + value.pGender + '</td><td>'
+                                + value.pEmail + '</td><td>'
+                                + value.aadharID + '</td>v'
+                                + value.pContact + '</td><td>'
+                                + value.addressId + '</td><td>'
+                                + value.streetNo + '</td><td>'
+                                + value.area + '</td><td>'
+                                + value.city + '</td><td>'
+                                + value.state + '</td><td>'
+                                + value.country + '</td><td>'
+                                + value.zipCode + '</td><td>'
+                                + value.occupationId + '</td><td>'
+                                + value.occupationName + '</td><td>'
+                                + value.occupationType + '</td><td>'
+                                + value.organisationId + '</td><td>'
+                                + value.organisationName + '</td><td>'
+                                + value.organisationType + '</td>'
+
+                                
+
+                            );
+                            $('#tblData').append(row);
+                        });
+                    },
+                    error: function (jQXHR) {
+                        if (jQXHR.status == "401") {
+                            $('#errorModal').modal('show');
+                        }
+                        else {
+                            $('#divErrorText').text(jQXHR.responseText);
+                            $('#divError').show('fade');
+                        }
+                    }
+                });
+            });
+        });
+
+
+
+
+        const uri = 'http://localhost:59408/api/Patients';
+function addPatients() {
+    const addNameTextbox = document.getElementById('patient');
+    const addAgeTextbox = document.getElementById('age');
+    const addGenderSelectbox = document.getElementById('gender');
+    const addEmailTextbox = document.getElementById('email');
+    const addUniqueIDTextbox = document.getElementById('uniqueid');
+    const addContactTextbox = document.getElementById('contact');
+    const addStreetTextbox = document.getElementById('street');
+    const addAreaTextbox = document.getElementById('area');
+    const addCityTextbox = document.getElementById('city');
+    const addStateTextbox = document.getElementById('state');
+    const addCountryTextbox = document.getElementById('country');
+    const addZipCodeTextbox = document.getElementById('zip_code');
+    const addOccupationNameTextbox = document.getElementById('occupation');
+    const addOccupationTypeTextbox = document.getElementById('occupationtype');
+    const addOrganisationNameTextbox = document.getElementById('organisation');
+    const addOrganisationTypeTextbox = document.getElementById('organisationtype');
+
+
+
+    const data =
+    {
+        patientName: addNameTextbox.value.trim(),
+        pAge: parseInt(addAgeTextbox.value),
+        pGender: addGenderSelectbox.value.trim(),
+        pEmail: addEmailTextbox.value.trim(),
+        uniqueID: addUniqueIDTextbox.value.trim(),
+        pContact: parseFloat(addContactTextbox.value),
+        streetNo: parseInt(addStreetTextbox.value),
+        area: addAreaTextbox.value.trim(),
+        city: addCityTextbox.value.trim(),
+        state: addStateTextbox.value.trim(),
+        country: addCountryTextbox.value.trim(),
+        zipCode: parseInt(addZipCodeTextbox.value),
+        occupationName: addOccupationNameTextbox.value.trim(),
+        occupationType: addOccupationTypeTextbox.value.trim(),
+        organisationName: addOrganisationNameTextbox.value.trim(),
+        organisationType: addOrganisationTypeTextbox.value.trim()
+    };
+    fetch(uri,
+        {
+            method: 'POST',
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        //.then(response => response.json())
+        .then((data) => {
+            console.log(data);
+
+        })
+
+        .catch(error => console.error('Unable to add data.', error));
+
+}
+    </script>
+</body>
+</html>

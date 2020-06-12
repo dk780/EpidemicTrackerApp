@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="padding-top:20px">
+    <script src="lib/jquery-3.5.0.min.js"></script>
+    <script src="Hospital.js"></script>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="well">
+            <input id="btnLoadHospitals" class="btn btn-success"
+                   type="button" value="Load Hospitals" />
+        </div>
+        <div id="divData" class="well hidden">
+            <table class="table table-bordered" id="tblData">
+                <thead>
+                    <tr class="success">
+                        <td>HospitalId</td>
+                        <td>HospitalName</td>
+                        <td>Contact</td>
+                        <td>StreetNo</td>
+                        <td>Area</td>
+                        <td>City</td>
+                        <td>State</td>
+                        <td>Country</td>
+                        <td>ZipCode</td>
+                    </tr>
+                </thead>
+                <tbody id="tblBody"></tbody>
+            </table>
+        </div>
+        <div class="modal fade" tabindex="-1" id="errorModal"
+             data-keyboard="false" data-backdrop="static">
+
+        </div>
+        <div id="divError" class="alert alert-danger collapse">
+            <a id="linkClose" href="#" class="close">&times;</a>
+            <div id="divErrorText"></div>
+        </div>
+    </div>
+
+
+    <br />
+        <div class="col-md-10 col-md-offset-1">
+            <div class="well">
+                    <form action="javascript:void(0);" method="POST" onsubmit="addHospitalDetail()">
+                        <center>
+                            <h3>Add Hospital.</h3>
+                            <div class="container" align="center">
+
+
+                                <!-- <p>Please enter the hospital detail.</p>-->
+                                <br />
+                                <label for="Hname"><b>HospitalName:</b></label>
+                                <input type="text" placeholder="Enter Hospital Name" id="Hname" required>
+                                <br /><br />
+
+                                <label for="Hnumber"><b>Contact:</b></label>
+                                <input type="text" placeholder="Phone Number" id="Hnumber" required>
+                                <br /><br />
+
+                                <h3>Enter Hospital Address</h3>
+                                <label for="street"><b>StreetNo:</b></label>
+                                <input type="text" placeholder="Enter Street Number" id="street" required>
+                                <br /><br />
+
+                                <label for="area"><b>Area:</b></label>
+                                <input type="text" placeholder="Enter Area" id="area" required>
+                                <br /><br />
+
+
+
+                                <label for="city"><b>City:</b></label>
+                                <input type="text" placeholder="Enter City" id="city" required>
+                                <br /><br />
+
+                                <label for="state"><b>State</b></label>
+                                <input type="text" placeholder="Enter State" id="state" required>
+                                <br /><br />
+
+                                <label for="country"><b>Country:</b></label>
+                                <input type="text" placeholder="Enter Country" id="country" required>
+                                <br /><br />
+
+                                <label for="zip_code"><b>ZipCode:</b></label>
+                                <input type="text" placeholder="Enter Zip Code" id="zip_code" required>
+                                <br /><br />
+
+                            </div>
+                            <input type="submit" name="submit" value="Submit" />
+                        </center>
+                    </form>
+            </div>
+            </div>
+
+</body>
+</html>
