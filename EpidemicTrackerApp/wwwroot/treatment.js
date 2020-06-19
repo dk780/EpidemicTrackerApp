@@ -6,7 +6,7 @@ function TreatmentDetails() {
     const addEmailTextbox = document.getElementById('pemail');
     const addAadharIDTextbox = document.getElementById('aadharid');
     const addContactTextbox = document.getElementById('patientcontact');
-    const addAddressTypeTextbox = document.getElementById('addresstype');
+    const addAddressTypeSelectbox = document.getElementById('addresstype');
     const addStreetTextbox = document.getElementById('street');
     const addAreaTextbox = document.getElementById('area');
     const addCityTextbox = document.getElementById('city');
@@ -16,17 +16,17 @@ function TreatmentDetails() {
     const addOccupationNameTextbox = document.getElementById('occupationname');
     const addOccupationTypeTextbox = document.getElementById('occupationtype');
     const addOrganisationNameTextbox = document.getElementById('organisationname');
-    const addOrganisationTypeTextbox = document.getElementById('organisationtype');
-    const addOrg_AddressTypeTextbox = document.getElementById('addresstype');
+    const addOrganisationContactTextbox = document.getElementById('organisationcontact');
+    const addOrg_AddressTypeSelectbox = document.getElementById('addresstype');
     const addOrg_StreetTextbox = document.getElementById('street');
-    const addvAreaTextbox = document.getElementById('area');
+    const addOrg_AreaTextbox = document.getElementById('area');
     const addOrg_CityTextbox = document.getElementById('city');
     const addOrg_StateTextbox = document.getElementById('state');
     const addOrg_CountryTextbox = document.getElementById('country');
     const addOrg_ZipCodeTextbox = document.getElementById('zipcode');
     const addHospitalNameTextbox = document.getElementById('hospitalname');
     const addHospitalContactTextbox = document.getElementById('contact');
-    const addHos_AddressTypeTextbox = document.getElementById('addresstype');
+    const addHos_AddressTypeSelectbox = document.getElementById('addresstype');
     const addHos_StreetTextbox = document.getElementById('street');
     const addHos_AreaTextbox = document.getElementById('area');
     const addHos_CityTextbox = document.getElementById('city');
@@ -52,7 +52,7 @@ function TreatmentDetails() {
         pEmail: addEmailTextbox.value.trim(),
         aadharID: addAadharIDTextbox.value.trim(),
         pContact: parseFloat(addContactTextbox.value),
-        addressType: addAddressTypeTextbox.value.trim(),
+        addressType: addAddressTypeSelectbox.value.trim(),
         streetNo: parseInt(addStreetTextbox.value),
         area: addAreaTextbox.value.trim(),
         city: addCityTextbox.value.trim(),
@@ -62,8 +62,8 @@ function TreatmentDetails() {
         occupationName: addOccupationNameTextbox.value.trim(),
         occupationType: addOccupationTypeTextbox.value.trim(),
         organisationName: addOrganisationNameTextbox.value.trim(),
-        organisationType: addOrganisationTypeTextbox.value.trim(),
-        org_AddressType: addOrg_AddressTypeTextbox.value.trim(),
+        organisationContact: addOrganisationContactTextbox.value.trim(),
+        org_AddressType: addOrg_AddressTypeSelectbox.value.trim(),
         org_StreetNo: parseInt(addOrg_StreetTextbox.value),
         org_Area: addOrg_AreaTextbox.value.trim(),
         org_City: addOrg_CityTextbox.value.trim(),
@@ -72,7 +72,7 @@ function TreatmentDetails() {
         org_ZipCode: parseInt(addOrg_ZipCodeTextbox.value),
         hospitalName: addHospitalNameTextbox.value.trim(),
         contact: addHospitalContactTextbox.value.trim(),
-        hos_AddressType: addHos_AddressTypeTextbox.value.trim(),
+        hos_AddressType: addHos_AddressTypeSelectbox.value.trim(),
         hos_StreetNo: parseInt(addHos_StreetTextbox.value),
         hos_Area: addHos_AreaTextbox.value.trim(),
         hos_City: addHos_CityTextbox.value.trim(),
@@ -85,7 +85,7 @@ function TreatmentDetails() {
         prescription: addPrescriptionTextbox.value.trim(),
         relievingDate: addRelievingDateTextbox.value.trim(),
         isFatal: addIsFatalTextbox.value.trim(),
-        currentstage: addCurrentstageTextbox.value.trim()
+        currentstage: parseInt(addCurrentstageTextbox.value)
     };
     fetch(uri,
         {

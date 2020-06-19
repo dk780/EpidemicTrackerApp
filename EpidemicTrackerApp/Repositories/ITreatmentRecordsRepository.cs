@@ -11,7 +11,9 @@ namespace EpidemicTrackerApp.Repositories
     {
         TreatmentRecords GetTreatmentRecords(int TreatmentRecordsId);
         List<TreatmentRecordsDto> GetAllTreatmentRecords();
-
+        List<TreatmentRecordsDto> GetCuredPatients();
+        List<TreatmentRecordsDto> GetUnCuredPatients();
+        List<TreatmentRecordsDto> GetDeceased();
         TreatmentRecordsDto AddTreatmentRecords(TreatmentRecordsDto treatmentRecordsDto);
 
         TreatmentRecords Update(TreatmentRecords treatmentRecordsChanges);

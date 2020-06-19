@@ -5,160 +5,173 @@
     <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <meta charset="utf-8" />
     <style>
-        .well{
-            background-color:aliceblue;
+
+        input[type=text], select {
+            width: 100%;
+            padding: 8px 16px;
+            margin: 8px 0;
+            display: inline-flex;
+            border: 1px solid #gf12f8;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+     
+        input[type=password], select {
+            width: 100%;
+            padding: 8px 16px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #gf12f8;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+
+        input[type=submit], select {
+            width: 100%;
+            background-color: azure;
+            padding: 8px 16px;
+            margin: 8px 0;
+            display: inline-block;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: aquamarine;
+            }
+
+
+        div {
+            border-radius: 5px;
+            background-color: #0094ff;
+            padding: 5px;
+        }
+
+        h1 {
+            color: #0094ff;
+            margin-left: 20px;
+        }
+
+        body {
             position:center;
-            padding:10px;
-            border:double;
-            margin-left:20%;
-            margin-top:40px;
-            
-        }
-        .btn:hover{
-            background-color:grey;
-            
+            margin-left:50%;
+            width: 50%;
+            background-image: url('Images/patient.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
         }
         
-        
+       
+        title {
+            color: #gf12f8;
+            margin-left: 10px;
+        }
     </style>
 </head>
-<body style="padding-top:20px; background-color:cornflowerblue">
-    <div class="col-md-10 col-md-offset-1">
+<body style="padding-top:20px">
+    <div class="col-md-10 col-md-10 float-md-right">
         <div class="well">
-            <!--for new registration-->
-            <table class="table table-bordered">
-                <thead>
-                    <tr class="success">
-                        <th colspan="2">
-                            <h3>Registration Form</h3>
-                            <h6>If registered already please login.</h6>
-                            <a class="btn btn-success float-right" href="Logins.html">Login</a>
+            <form action="javascript:void(0);" method="POST" onsubmit="addRegisterDetail()">
+                <center>
+                    <h3>Registration</h3>
+                    <div class="container" align="left">
 
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Name</td>
-                        <td><input type="text" id="txtName" placeholder="enter your name" /> </td>
-                    </tr>
-                    <tr>
-                        <td>Gender</td>
+                        <!-- <p>Please enter the details.</p>-->
+                        <br />
+                        <label for="name"><b>Name:</b></label>
+                        <input type="text" placeholder="Enter Name" id="name" required>
+                        <br /><br />
+                        <label for="gender"><b>Gender:</b></label>
 
-                        <td>
-                            <select id="gender">
-                                <option value="select">Select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </td>
-                    </tr>
+                        <select name="gender" id="gender">
+                            <option value="select">Select</option>
+                            <option value="ale">Male</option>
+                            <option value="female">Female</option>
 
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="text" id="txtEmail" placeholder="Email" /> </td>
-                    </tr>
+                        </select><br /><br />
 
-                    <tr>
-                        <td>Contact</td>
-                        <td>
-                            <input type="text" id="Contact" placeholder="Phone number" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td>
-                            <input type="password" id="txtPassword"
-                                   placeholder="Password" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Confirm Password</td>
-                        <td>
-                            <input type="password" id="txtConfirmPassword"
-                                   placeholder="Confirm Password" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Role Name</td>
-                        <td>
-                            <select id="role">
-                                <option value="select">Select</option>
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr class="success">
-                        <td colspan="2">
-                            <input id="btnRegister" class="btn btn-success"
-                                   type="button" value="Register" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!--regsitration is successful-->
-            <div class="modal fade" tabindex="-1" id="successModal"
-                 data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">
-                                &times;
-                            </button>
-                            <h4 class="modal-title">Success</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <h2 class="modal-title">Registration Successful!</h2>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success"
-                                    data-dismiss="modal">
-                                Close
-                            </button>
-                        </div>
+                        <label for="email"><b>Email:</b></label>
+                        <input type="text" placeholder="Email Id" id="email" required>
+                        <br /><br />
+
+                        <label for="contact"><b>ContactNo:</b></label>
+                        <input type="text" placeholder="Phone Number" id="contact" required>
+                        <br /><br />
+
+                        <label for="password"><b>Password:</b></label>
+                        <input type="password" placeholder="Enter Password" id="password" required>
+                        <br /><br />
+
+
+
+                        <label for="confirmpassword"><b>Confirm Password:</b></label>
+                        <input type="password" placeholder="Confirm Password" id="confirmpassword" required>
+                        <br /><br />
+
+                        <label for="role">Role Name:</label>
+
+                        <select name="role" id="role">
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+
+                        </select>
+
                     </div>
-                </div>
-            </div>
-            <!--it shows validation errors-->
+                    <input type="submit" name="submit" value="Submit" />
+                    <label>If already Registered Login</label>
+                    <a class="btn col-12 btn-primary float-right" href="Logins.html">Login</a>
 
-
-                <a id="linkClose" href="#" class="close">&times;</a>
-            </div>
+                </center>
+            </form>
         </div>
+    </div>
+
 
     <script src="lib/jquery-3.5.0.min.js"></script>
     <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <script type="text/javascript">
-        $(document).ready(function () {
+        const uri = 'http://localhost:59408/api/Logins';
+        function addRegisterDetail() {
+            const addNameTextbox = document.getElementById('name');
+            const addGenderSelectbox = document.getElementById('gender');
+            const addEmailTextbox = document.getElementById('email');
+            const addContactTextbox = document.getElementById('contact');
+            const addPasswordTextbox = document.getElementById('password');
+            const addConfirmPasswordTextbox = document.getElementById('confirmpassword');
+            const addRoleSelectbox = document.getElementById('role');
 
-            //Close the bootstrap alert
-            $('#linkClose').click(function () {
-                $('#divError').hide('fade');
-            });
-
-            // Save the new user details
-            $('#btnRegister').click(function () {
-                $.ajax({
-                    url: 'http://localhost:59408/api/Logins',
+            const data =
+            {
+                name: addNameTextbox.value.trim(),
+                gender: addGenderSelectbox.value.trim(),
+                email: addEmailTextbox.value.trim(),
+                contact: addContactTextbox.value.trim(),
+                password: addPasswordTextbox.value.trim(),
+                confirmPassword: addConfirmPasswordTextbox.value.trim(),
+                roleName: addRoleSelectbox.value.trim(),
+            };
+            fetch(uri,
+                {
                     method: 'POST',
-                    data: {
-                        name: $('#txtName').val(),
-                        gender: $('#gender').val(),
-                        email: $('#txtEmail').val(),
-                        contact: $('#Contact').val(),
-                        password: $('#txtPassword').val(),
-                        confirmPassword: $('#txtConfirmPassword').val(),
-                        roleName: $('#role').val()
+                    headers:
+                    {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
                     },
-                    success: function () {
-                        $('#successModal').modal('show');
-                    }
-                });
-            });
-        });
+                    body: JSON.stringify(data)
+                })
+                //.then(response => response.json())
+                .then((data) => {
+                    console.log(data);
+
+                })
+
+                .catch(error => console.error('Unable to add data.', error));
+
+        }
     </script>
 </body>
 </html>

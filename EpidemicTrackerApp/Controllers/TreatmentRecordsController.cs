@@ -38,7 +38,7 @@ namespace EpidemicTrackerApp.Controllers
         public ActionResult GetCuredPatients()
         {
             List<TreatmentRecordsDto> curedpatients = new List<TreatmentRecordsDto>();
-            curedpatients = treatmentRecordsRepository.GetAllTreatmentRecords();
+            curedpatients = treatmentRecordsRepository.GetCuredPatients();
             if (curedpatients.Count == 0)
             {
                 return NotFound();
@@ -50,7 +50,7 @@ namespace EpidemicTrackerApp.Controllers
         public ActionResult GetUnCuredPatients()
         {
             List<TreatmentRecordsDto> uncuredpatients = new List<TreatmentRecordsDto>();
-            uncuredpatients = treatmentRecordsRepository.GetAllTreatmentRecords();
+            uncuredpatients = treatmentRecordsRepository.GetUnCuredPatients();
             if (uncuredpatients.Count == 0)
             {
                 return NotFound();
@@ -63,7 +63,7 @@ namespace EpidemicTrackerApp.Controllers
         public ActionResult GetDeceased()
         {
             List<TreatmentRecordsDto> deceased = new List<TreatmentRecordsDto>();
-            deceased = treatmentRecordsRepository.GetAllTreatmentRecords();
+            deceased = treatmentRecordsRepository.GetDeceased();
             if (deceased.Count == 0)
             {
                 return NotFound();

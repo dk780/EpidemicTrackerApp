@@ -103,6 +103,7 @@ namespace EpidemicTrackerApp.Repositories
                                 PAge = psnt.PAge,
                                 PGender = psnt.PGender,
                                 PEmail = psnt.PEmail,
+                                AadharID = psnt.AadharID,
                                 PContact = psnt.PContact,
 
                                 AddressId = psnt.Address.AddressId,

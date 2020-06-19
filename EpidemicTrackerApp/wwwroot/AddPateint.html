@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #gf12f8;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type=number], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #gf12f8;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type=datetime], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #gf12f8;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit], select {
+            width: 100%;
+            background-color: azure;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: aquamarine;
+            }
+
+        div {
+            border-radius: 4px;
+            background-color: #808080;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #0094ff;
+            margin-left: 20px;
+        }
+
+        body {
+            background-color: #4800ff;
+            width: 50%;
+            background-image: url('Images/patient.jpg');
+            background-repeat:no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+
+
+        title {
+            color: #gf12f8;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center"><u>Add Patient Details</u></h1>
+
+    <form action="javascript:void(0);" method="POST" onsubmit="addPatients()">
+        <div>
+            <label>
+                PatientName:
+                <input type="text" id="patientname" placeholder="Patient Name" />
+            </label>
+            <br />
+            <br />
+            <label>
+                PAge:
+                <input type="number" id="page" placeholder="Patient Age" />
+            </label>
+            <br />
+            <br />
+            <label for="gender">Gender:</label>
+            <select id="gender">
+                <option value="select">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <br />
+            <br />
+            <label>
+                Email:
+                <input type="text" id="pemail" placeholder="Patient Email" />
+            </label>
+            <br />
+            <br />
+            <label>
+                AadharID:
+                <input type="text" id="aadharid" placeholder="AadharId" />
+            </label>
+            <br />
+            <br />
+            <label>
+                PatientContact:
+                <input type="text" id="patientcontact" placeholder="Phone No" />
+            </label>
+            <br />
+            <br />
+
+
+            <label for="addresstype">AddressType</label>
+            <select id="addresstype">
+                <option value="patientaddr">Patient Address</option>
+                <option value="orgaddr">Organisation Address</option>
+                <option value="hospitaladdr">Hospital Address</option>
+            </select>
+            <br />
+            <br />
+            <label>
+                Street No
+                <input type="text" id="street" placeholder="Street No" />
+            </label>
+            <br />
+            <br />
+            <label>
+                Area
+                <input type="text" id="area" placeholder="Area" />
+            </label>
+            <br />
+            <br />
+            <label>
+                City
+                <input type="text" id="city" placeholder="City" />
+            </label>
+            <br />
+            <br />
+            <label>
+                State
+                <input type="text" id="state" placeholder="State" />
+            </label>
+            <br />
+            <br />
+            <label>
+                Country
+                <input type="text" id="country" placeholder="Country" />
+            </label>
+            <br />
+            <br />
+            <label>
+                ZipCode
+                <input type="text" id="zipcode" placeholder="ZipCode" />
+            </label>
+            <br />
+            <br />
+
+            <label>
+                Occupation Name
+                <input type="text" id="occupationname" placeholder="Occupation" />
+            </label>
+            <br />
+            <br />
+            <label>
+                Occupation Type
+                <input type="text" id="occupationtype" placeholder="Occupation Type" />
+            </label>
+            <br />
+            <br />
+
+            <label>
+                Organisation Name
+                <input type="text" id="organisationname" placeholder="Organisation Name" />
+            </label>
+            <br />
+            <br />
+            <label>
+                Organisation Type
+                <input type="text" id="organisationtype" placeholder="Organisation Type" />
+            </label>
+            <br />
+            <br />
+
+        </div>
+
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+
+    <script type="text/javascript">
+
+        const uri = 'http://localhost:59408/api/Patients';
+        function addPatients() {
+            const addNameTextbox = document.getElementById('patientname');
+            const addAgeTextbox = document.getElementById('page');
+            const addGenderSelectbox = document.getElementById('gender');
+            const addEmailTextbox = document.getElementById('pemail');
+            const addAadharIDTextbox = document.getElementById('aadharid');
+            const addContactTextbox = document.getElementById('patientcontact');
+            const addAddressTypeTextbox = document.getElementById('addresstype');
+            const addStreetTextbox = document.getElementById('street');
+            const addAreaTextbox = document.getElementById('area');
+            const addCityTextbox = document.getElementById('city');
+            const addStateTextbox = document.getElementById('state');
+            const addCountryTextbox = document.getElementById('country');
+            const addZipCodeTextbox = document.getElementById('zipcode');
+            const addOccupationNameTextbox = document.getElementById('occupationname');
+            const addOccupationTypeTextbox = document.getElementById('occupationtype');
+            const addOrganisationNameTextbox = document.getElementById('organisationname');
+            const addOrganisationTypeTextbox = document.getElementById('organisationtype');
+
+
+
+            const data =
+            {
+                patientName: addNameTextbox.value.trim(),
+                pAge: parseInt(addAgeTextbox.value),
+                pGender: addGenderSelectbox.value.trim(),
+                pEmail: addEmailTextbox.value.trim(),
+                aadharID: addAadharIDTextbox.value.trim(),
+                pContact: parseFloat(addContactTextbox.value),
+                addressType: addAddressTypeTextbox.value.trim(),
+                streetNo: parseInt(addStreetTextbox.value),
+                area: addAreaTextbox.value.trim(),
+                city: addCityTextbox.value.trim(),
+                state: addStateTextbox.value.trim(),
+                country: addCountryTextbox.value.trim(),
+                zipCode: parseInt(addZipCodeTextbox.value),
+                occupationName: addOccupationNameTextbox.value.trim(),
+                occupationType: addOccupationTypeTextbox.value.trim(),
+                organisationName: addOrganisationNameTextbox.value.trim(),
+                organisationType: addOrganisationTypeTextbox.value.trim()
+            };
+            fetch(uri,
+                {
+                    method: 'POST',
+                    headers:
+                    {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                //.then(response => response.json())
+                .then((data) => {
+                    console.log(data);
+
+                })
+
+                .catch(error => console.error('Unable to add data.', error));
+
+        }
+    </script>
+</body >
+</html >

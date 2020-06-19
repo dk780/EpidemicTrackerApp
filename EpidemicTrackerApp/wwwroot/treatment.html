@@ -57,23 +57,18 @@
         }
 
         h1 {
-            color: #0094ff;
-            margin-left: 20px;
+            color: black;
+            margin-left: 30px;
         }
 
         body {
             background-color: #4800ff;
             width: 50%;
+            background-image: url('Images/dr.jpg');
+            background-repeat:no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
         }
-
-        
-
-        title {
-            color: #gf12f8;
-            margin-left: 20px;
-        }
-
-        
 
         
     </style>
@@ -81,7 +76,7 @@
 </head>
 <body>
 
-    <h1 style="text-align:center">Treatment Record</h1>
+    <h1 style="text-align:center;"><u> Add Treatment Record</u></h1>
     <form action="javascript:void(0);" method="POST" onsubmit="TreatmentDetails()">
         <div>
             <label>
@@ -189,8 +184,8 @@
             <br />
             <br />
             <label>
-                Organisation Type
-                <input type="text" id="organisationtype" placeholder="Organisation Type" />
+                Organisation Contact
+                <input type="text" id="organisationcontact" placeholder="Organisation Contact" />
             </label>
             <br />
             <br />
@@ -314,19 +309,19 @@
 
             <label>
                 Admitted Date
-                <input type="datetime" id="admitdate" placeholder="Admitted Date" />
+                <input type="date" id="admitdate" placeholder="Admitted Date" />
             </label>
             <br />
             <br />
             <label>
                 Prescription
-                <input type="text" id="prerscription" placeholder="Prescription" />
+                <input type="text" id="prescription" placeholder="Prescription" />
             </label>
             <br />
             <br />
             <label>
                 Relieving Date
-                <input type="datetime" id="relievingdate" placeholder="Relieving Date" />
+                <input type="date" id="relievingdate" placeholder="Relieving Date" />
             </label>
             <br />
             <br />

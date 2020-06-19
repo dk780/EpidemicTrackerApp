@@ -224,7 +224,8 @@ namespace EpidemicTrackerApp.Repositories
                                         AdmittedDate = tr.AdmittedDate,
                                         Prescription = tr.Prescription,
                                         RelievingDate = tr.RelievingDate,
-                                        IsFatal = tr.IsFatal
+                                        IsFatal = tr.IsFatal,
+                                        Currentstage = tr.Currentstage
 
 
 
@@ -234,13 +235,21 @@ namespace EpidemicTrackerApp.Repositories
 
         public List<TreatmentRecordsDto> GetCuredPatients()
         {
-            var cured = (from tr in Context.TreatmentRecords
-                         .Include(a => a.Patient).ThenInclude(a => a.Address).Include(a => a.Hospital).Include(a => a.Disease)
-                         .Where(a => a.Currentstage >= 90)
+            var cured = (
+                         from pat in Context.Patients 
+
+                         join addr in Context.Addresses on pat.AddressId equals addr.AddressId
+                         join tr in Context.TreatmentRecords on pat.PatientID equals tr.PatientID
+                         
+                         join hosp in Context.Hospitals on tr.HospitalId equals hosp.HospitalId
+                         join disease in Context.Diseases on tr.DiseaseId equals disease.DiseaseId
+                         where tr.Currentstage>=80
+
+
                          select new TreatmentRecordsDto()
                          {
                              PatientName = tr.Patient.PatientName,
-                             AadharID = tr.Patient.AadharID,
+                             AadharID = tr.Patient.AadharID, 
                              PContact = tr.Patient.PContact,
                              HospitalName = tr.Hospital.HospitalName,
                              City = tr.Patient.Address.City,
@@ -257,10 +266,16 @@ namespace EpidemicTrackerApp.Repositories
 
         public List<TreatmentRecordsDto> GetUnCuredPatients()
         {
-            var uncured = (from tr in Context.TreatmentRecords
-                         .Include(a => a.Patient).ThenInclude(a => a.Address).Include(a => a.Hospital).Include(a => a.Disease)
-                         .Where(a => a.Currentstage < 90)
-                           select new TreatmentRecordsDto()
+            var uncured = (from pat in Context.Patients
+
+                          join addr in Context.Addresses on pat.AddressId equals addr.AddressId
+                          join tr in Context.TreatmentRecords on pat.PatientID equals tr.PatientID
+
+                          join hosp in Context.Hospitals on tr.HospitalId equals hosp.HospitalId
+                          join disease in Context.Diseases on tr.DiseaseId equals disease.DiseaseId
+                          where tr.Currentstage<80 & tr.Currentstage!=0
+
+                          select new TreatmentRecordsDto()
                            {
                                PatientName = tr.Patient.PatientName,
                                AadharID = tr.Patient.AadharID,
@@ -280,10 +295,15 @@ namespace EpidemicTrackerApp.Repositories
 
         public List<TreatmentRecordsDto> GetDeceased()
         {
-            var deceased = (from tr in Context.TreatmentRecords
-                         .Include(a => a.Patient).ThenInclude(a => a.Address).Include(a => a.Hospital).Include(a => a.Disease)
-                         .Where(a => a.IsFatal == "Yes")
-                           select new TreatmentRecordsDto()
+            var deceased = (from pat in Context.Patients
+
+                            join addr in Context.Addresses on pat.AddressId equals addr.AddressId
+                            join tr in Context.TreatmentRecords on pat.PatientID equals tr.PatientID
+
+                            join hosp in Context.Hospitals on tr.HospitalId equals hosp.HospitalId
+                            join disease in Context.Diseases on tr.DiseaseId equals disease.DiseaseId
+                            where tr.Currentstage ==0
+                            select new TreatmentRecordsDto()
                            {
                                PatientName = tr.Patient.PatientName,
                                AadharID = tr.Patient.AadharID,

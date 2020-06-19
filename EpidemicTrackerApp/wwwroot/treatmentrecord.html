@@ -4,9 +4,11 @@
     <title></title>
     <meta charset="utf-8" />
     <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    
 </head>
-<body style="padding-top:20px">
+<body style="padding-top:20px; background-color:burlywood;">
     <script src="lib/jquery-3.5.0.min.js"></script>
+    <input type="text" id="myInput" placeholder="search names" float="right" onkeyup="searchFun()">
     <div class="col-md-10 col-md-offset-1">
         <div class="well">
             <input id="btnLoadTreatmentRecord" class="btn btn-success"
@@ -81,85 +83,7 @@
     </div>
 
     <br />
-    <div class="col-md-10 col-md-offset-1">
-        <div class="well table-bordered">
-            <form action="javascript:void(0);" method="POST" onsubmit="addTreatmentRecords()">
-                <center>
-                    <h3>Add TreatmentRecords.</h3>
-                    <div class="container table-bordered" align="center">
 
-
-                        <!-- <p>Please enter the treatment records detail.</p>-->
-                        <br />
-                        <label for="patient"><b>PatientName:</b></label>
-                        <input type="text" placeholder="Enter PatientName" id="patient" required>
-                        <br /><br />
-
-                        <label for="age"><b>PAge:</b></label>
-                        <input type="text" placeholder="Patient Age" id="age" required>
-                        <br /><br />
-
-                        <label for="gender"><b>Gender:</b></label>
-                        <select id="gender">
-                            <option value="select">Select</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                        <br /><br />
-
-                        <label for="email"><b>Email I'd:</b></label>
-                        <input type="text" placeholder="email" id="email" required>
-                        <br /><br />
-
-
-
-                        <label for="uniqueid"><b>UniqueID:</b></label>
-                        <input type="text" placeholder="Enter Aadhar No" id="uniqueid" required>
-                        <br /><br />
-
-                        <label for="contact"><b>Contact No</b></label>
-                        <input type="text" placeholder="Phone No" id="contact" required>
-                        <br /><br />
-
-                        <label for="Hname"><b>HospitalName:</b></label>
-                        <input type="text" placeholder="Enter Hospital Name" id="Hname" required>
-                        <br /><br />
-
-                        <label for="Hnumber"><b>Contact:</b></label>
-                        <input type="text" placeholder="Hospital Number" id="Hnumber" required>
-                        <br /><br />
-
-                        <label for="Dname"><b>DiseaseName:</b></label>
-                        <input type="text" placeholder="Enter Disease Name" id="Dname" required>
-                        <br /><br />
-
-                        <label for="Dtype"><b>Disease Type:</b></label>
-                        <input type="text" placeholder="Disease Type" id="Dtype" required>
-                        <br /><br />
-                        <label for="admit"><b>AdmittedDate:</b></label>
-                        <input type="datetime" placeholder="Enter Date" id="admit" required>
-                        <br /><br />
-
-                        <label for="prescription"><b>Prescription:</b></label>
-                        <input type="text" placeholder="Prescription" id="prescription" required>
-                        <br /><br />
-                        <label for="relieving"><b>RelievingDate:</b></label>
-                        <input type="datetime" placeholder="Enter Date" id="relieving" required>
-                        <br /><br />
-
-                        <label for="isfatal"><b>IsFatal:</b></label>
-                        <select id="isfatal">
-                            <option value="select">Select</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                        <br /><br />
-                    </div>
-                    <input type="submit" name="submit" value="Submit" />
-                </center>
-            </form>
-        </div>
-    </div>
 
 
     <script src="lib/jquery-3.5.0.min.js"></script>
@@ -227,7 +151,7 @@
                                 + value.prescription + '</td><td>'
                                 + value.relievingDate + '</td><td>'
                                 + value.isFatal + '</td><td>'
-                                + value.currentstage + '</td><td>'
+                                + value.currentstage + '</td>'
 
 
                             );
@@ -247,60 +171,28 @@
             });
         });
 
+        const searchFun = () => {
+            let filter = document.getElementById('myInput').value.toUpperCase();
 
-        const uri = 'http://localhost:59408/api/TreatmentRecords';
-function addTreatmentRecords() {
-    const addNameTextbox = document.getElementById('patient');
-    const addAgeTextbox = document.getElementById('age');
-    const addGenderSelectbox = document.getElementById('gender');
-    const addEmailTextbox = document.getElementById('email');
-    const addUniqueIDTextbox = document.getElementById('uniqueid');
-    const addContactTextbox = document.getElementById('contact');
-    const addHNameTextbox = document.getElementById('Hname');
-    const addPhoneTextbox = document.getElementById('Hnumber');
-    const addDiseaseNameTextbox = document.getElementById('Dname');
-    const addDiseaseTypeTextbox = document.getElementById('Dtype');
-    const addAdmittedDateTextbox = document.getElementById('admit');
-    const addPrescriptionTextbox = document.getElementById('prescription');
-    const addRelievingDateTextbox = document.getElementById('relieving');
-    const addIsFatalSelectbox = document.getElementById('isfatal');
+            let myTable = document.getElementById('tblData');
+            let tr = myTable.getElementsByTagName('tr');
+            for (var i = 0; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td')[2];
 
-    const data =
-    {
-        patientName: addNameTextbox.value.trim(),
-        pAge: parseInt(addAgeTextbox.value),
-        pGender: addGenderSelectbox.value.trim(),
-        pEmail: addEmailTextbox.value.trim(),
-        uniqueID: addUniqueIDTextbox.value.trim(),
-        pContact: parseFloat(addContactTextbox.value),
-        hospitalName: addHNameTextbox.value.trim(),
-        contact: addPhoneTextbox.value.trim(),
-        diseaseName: addDiseaseNameTextbox.value.trim(),
-        diseaseType: addDiseaseTypeTextbox.value.trim(),
-        admittedDate: addAdmittedDateTextbox.value.trim(),
-        prescription: addPrescriptionTextbox.value.trim(),
-        relievingDate: addRelievingDateTextbox.value.trim(),
-        isFatal: addIsFatalSelectbox.value.trim(),
-    };
-    fetch(uri,
-        {
-            method: 'POST',
-            headers:
-            {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        //.then(response => response.json())
-        .then((data) => {
-            console.log(data);
+                if (td) {
+                    let textvalue = td.textContent || td.innerHTML;
+                    if (textvalue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
 
-        })
 
-        .catch(error => console.error('Unable to add data.', error));
-
-}
     </script>
+    <a style="background-color:mintcream; font:bold;" href='treatment.html'>Add Treatment Record</a><br />
+
 </body>
 </html>
